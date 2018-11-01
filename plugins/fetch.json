@@ -1,0 +1,21 @@
+{
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-googlemaps": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-googlemaps@^2.4.6"
+    },
+    "is_top_level": true,
+    "variables": {
+      "API_KEY_FOR_ANDROID": "AIzaSyDaryCKdimRSbcxTy40sqhFOx6LISmK1H4",
+      "API_KEY_FOR_IOS": "AIzaSyDaryCKdimRSbcxTy40sqhFOx6LISmK1H4"
+    }
+  }
+}

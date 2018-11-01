@@ -1,0 +1,116 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {
+      "config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"CordovaGoogleMaps\"><param name=\"ios-package\" value=\"CordovaGoogleMaps\" /><param name=\"onload\" value=\"true\" /><param name=\"onreset\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginEnvironment\"><param name=\"ios-package\" value=\"PluginEnvironment\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginGeocoder\"><param name=\"ios-package\" value=\"PluginGeocoder\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginLocationService\"><param name=\"ios-package\" value=\"PluginLocationService\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginMap\"><param name=\"ios-package\" value=\"PluginMap\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginCircle\"><param name=\"ios-package\" value=\"PluginCircle\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginGroundOverlay\"><param name=\"ios-package\" value=\"PluginGroundOverlay\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginKmlOverlay\"><param name=\"ios-package\" value=\"PluginKmlOverlay\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginMarker\"><param name=\"ios-package\" value=\"PluginMarker\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginPolygon\"><param name=\"ios-package\" value=\"PluginPolygon\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginPolyline\"><param name=\"ios-package\" value=\"PluginPolyline\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginTileOverlay\"><param name=\"ios-package\" value=\"PluginTileOverlay\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginMarkerCluster\"><param name=\"ios-package\" value=\"PluginMarkerCluster\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PluginStreetViewPanorama\"><param name=\"ios-package\" value=\"PluginStreetViewPanorama\" /></feature>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "*-Info.plist": {
+        "parents": {
+          "Google Maps API Key": [
+            {
+              "xml": "<string>AIzaSyDaryCKdimRSbcxTy40sqhFOx6LISmK1H4</string>",
+              "count": 1
+            }
+          ],
+          "NSLocationWhenInUseUsageDescription": [
+            {
+              "xml": "<string>This app wants to get your location while this app runs only.</string>",
+              "count": 1
+            }
+          ],
+          "NSLocationAlwaysUsageDescription": [
+            {
+              "xml": "<string>This app wants to get your location always, even this app runs in background.</string>",
+              "count": 1
+            }
+          ],
+          "LSApplicationQueriesSchemes": [
+            {
+              "xml": "<array><string>googlechromes</string><string>comgooglemaps</string></array>",
+              "count": 1
+            }
+          ],
+          "CFBundleURLTypes": [
+            {
+              "xml": "<array><dict><key>CFBundleTypeRole</key><string>Editor</string><key>CFBundleURLName</key><string>com.ivo.voiddot</string><key>CFBundleURLSchemes</key><array><string>com.ivo.voiddot</string></array></dict></array>",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ivo.voiddot"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [],
+  "plugin_metadata": {
+    "cordova-plugin-whitelist": "1.3.3"
+  }
+}
