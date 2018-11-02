@@ -9,6 +9,7 @@ contract LocationFinder {
     }
     
     mapping(bytes32 => keyInfo) public userData;
+    mapping(address => bytes32) public names;
     
     constructor()
         public
@@ -23,6 +24,7 @@ contract LocationFinder {
         keyInfo storage data = userData[hash];
         require(data.owner == 0x0);
         data.owner = msg.sender;
+        names(msg.sender) = name;
     }
     
     function set(bytes32 name, bytes32 _keyStart, bytes32 _keyEnd)
