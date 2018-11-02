@@ -16,6 +16,16 @@ const Card = Styled.div`
     padding: 0;
     width: 100%;
     padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+`
+const User = Styled.div`
+    background-color: #555;
+    text-align: left;
+    border-radius: 7px;
+    width: 100%;
+    padding: 15px 20px;
+    color: #fff;
 `
 
 export class MainContainer extends Component {
@@ -24,11 +34,19 @@ export class MainContainer extends Component {
         this.googleMaps = GoogleMaps.createClient({key: "AIzaSyDaryCKdimRSbcxTy40sqhFOx6LISmK1H4"})
         this.state = {
             location: null,
-            geocode: null
+            geocode: null,
+            data: null,
+            users: {
+                "22ee": {
+                    name: "Ivo"
+                }
+            }
         }
     }
-    componentDidMount() {
-        Guardian.setup()/*
+    addUser() {
+    }
+    async componentDidMount() {
+        Guardian.setup()
         navigator.geolocation.getCurrentPosition(
             ({coords: location}) => {
                 this.googleMaps.reverseGeocode({latlng: [location.latitude, location.longitude]},
@@ -39,9 +57,8 @@ export class MainContainer extends Component {
                     })
                 this.setState(state => ({...state, location}))
             }
-        )*/
-        //Data.setup()
-
+        )
+        this.data = await Data.bind()
     }
     render() {
         const location = this.state.location
@@ -60,15 +77,9 @@ export class MainContainer extends Component {
                     </Column>
                 </Row>
                 <div style={{position: "absolute", top: 0, marginTop: -50, left: 0, width: "100%", height: "calc(100% + 50px)"}}>
-                    <Map google={this.props.google} zoom={14}>
-                        <Marker onClick={() => null}
+                    <Map center={location ? {lat: location.latitude, lng: location.longitude} : null} google={this.props.google}  zoom={14}>
+                        <Marker position={location ? {lat: location.latitude, lng: location.longitude} : null} onClick={() => null}
                                 name={'Current location'} />
-
-                        <InfoWindow onClose={() => null}>
-                            <div>
-                            <h1>Your location</h1>
-                            </div>
-                        </InfoWindow>
                     </Map>
                 </div>
                 <Draggable
@@ -82,12 +93,11 @@ export class MainContainer extends Component {
                             <div style={{fontSize: 17, color: "#333", width: "100%", marginBottom: 10}}>You are at</div>
                             <div style={{fontSize: 17, color: "#333", width: "100%"}}>{geocode ? geocode.split(",").map((l, i) => <div style={{marginBottom: 2, fontWeight: i == 0 ? "bold" : ""}}>{l}</div>) : "Locating..."}</div>
                         </Column>
-                        
                     </Card>
                 </Draggable>
             </div>
         </Fragment>
         )
     }
-    }
+}
 export default GoogleApiWrapper({apiKey: "AIzaSyDaryCKdimRSbcxTy40sqhFOx6LISmK1H4"})(MainContainer)

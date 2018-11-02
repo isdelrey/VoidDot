@@ -1,9 +1,21 @@
 import IPFS from 'ipfs'
 import OrbitDB from 'orbit-db'
 import keypair from 'keypair'
+import Guardian from './guardian'
 
 export default class Data {
-    static async setup() {
+    static async hash() {
+        let id = localStorage.getItem("id")
+        
+        if(!id) {
+            const buffer = new TextEncoder("utf-8").encode(JSON.stringify(Guardian.keys()))
+            id = (await crypto.subtle.digest("SHA-256", buffer)).toString('utf8')
+            localStorage.setItem("id", id)
+        }
+        
+        return id
+    }
+    static async bind(trigger) {
         const ipfs = new IPFS({
             start: true,
             EXPERIMENTAL: {
@@ -23,26 +35,26 @@ export default class Data {
           })
         
         ipfs.on('error', (e) => console.error(e))
-        ipfs.on('ready', async () => {
-            const orbitdb = new OrbitDB(ipfs)
-            
-            const db = await orbitdb.log('hello')
-            await db.load()
-            
-            db.events.on('replicated', (address) => {
-                console.log(db.iterator({ limit: -1 }).collect())
+        await new Promise((r, j) => {
+            ipfs.on('ready', async () => {
+                r()
             })
-            
-            const hash = await db.add('world')
-            console.log(hash)
-            console.log(await db.add("Hello"))
-            
-            const [{payload: {value}}] = db.iterator({limit: 1}).collect()
-            
-            console.log(value)
         })
-
+        console.log("IPFS Ready")
+        window.navigator.geolocation.watchPosition(
+            location => {
+                const {coords: _location} = location
+                console.log("New Location", _location)
+                
+                const id = localStorage.getItem("id")
+                ipfs.pubsub.publish(`voiddot:${id}:location`, new Buffer(JSON.stringify(_location)), console.log)
+            })
         
+        return new Data(ipfs)
     }
-    
+    constructor(ipfs) {
+        this.ipfs = ipfs
+    }
+    subscribe(id, trigger) {
+    }
 }
