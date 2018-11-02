@@ -7,18 +7,8 @@ import Button from '../../system/Button'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'
 import Draggable from 'react-draggable'
 import GoogleMaps from '@google/maps'
-//const IPFS = require('ipfs')
-//const OrbitDB = require('orbit-db')
-
-// OrbitDB uses Pubsub which is an experimental feature
-// and need to be turned on manually.
-// Note that these options need to be passed to IPFS in
-// all examples even if not specified so.
-const ipfsOptions = {
-  EXPERIMENTAL: {
-    pubsub: true
-  }
-}
+import Data from '../../lib/data';
+import Guardian from '../../lib/guardian';
 
 const Card = Styled.div`
     background-color: rgba(255, 255, 255, 0.9);
@@ -38,6 +28,7 @@ export class MainContainer extends Component {
         }
     }
     componentDidMount() {
+        Guardian.setup()/*
         navigator.geolocation.getCurrentPosition(
             ({coords: location}) => {
                 this.googleMaps.reverseGeocode({latlng: [location.latitude, location.longitude]},
@@ -48,7 +39,9 @@ export class MainContainer extends Component {
                     })
                 this.setState(state => ({...state, location}))
             }
-        )
+        )*/
+        //Data.setup()
+
     }
     render() {
         const location = this.state.location
